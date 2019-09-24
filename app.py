@@ -1,12 +1,13 @@
 from flask import Flask
 app = Flask(__name__)
 
-f = open('index.html', 'r')
-index = f.read()
-f.close()
+def readAssign(file):
+    file = open('index.html', 'r')
+    index = file.read()
+    file.close()
+    return index
 
 
-print(index)
 @app.route("/")
 def hello():
-    return index
+    return readAssign(file='index.html')
