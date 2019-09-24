@@ -11,6 +11,10 @@ def index():
 def home():
     return render_template('index.html', title='Home', name='Home')
 
+@app.route('/help')
+def help():
+   return render_template('index.html', title='Help', name='Help')
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8080)
 
