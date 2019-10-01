@@ -1,14 +1,8 @@
 from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
-import sqlalchemy as db
-from dotenv import load_dotenv
-
-load_dotenv()
-
 app = Flask(__name__)
 
-
-engine = db.create_engine(f'dialect+driver://root:marco123@localhost:3306/myDB')
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/test.db'
 db = SQLAlchemy(app)
 
 
@@ -31,10 +25,9 @@ class User(db.Model):
     email = db.Column(db.String(120), unique=True, nullable=False)
 
     def __repr__(self):
-        return f'<User {self.username}>'
-
+        return '<User %r>' % self.username
 
 
 if __name__ == "__main__":
-    app.run(host='localhost', port=8080)
+    app.run()
 
