@@ -9,15 +9,15 @@ db = SQLAlchemy(app)
 #Routing 
 @app.route("/")
 def index():
-    return render_template('index.html',title='Landing',name='Landing')
-
-@app.route("/home")
-def home():
-    return render_template('index.html', title='Home', name='Home')
+    return render_template('index.html', title='Home')
 
 @app.route('/help')
 def help():
-    return render_template('index.html', title='Help', name='Help')
+    return render_template('index.html', title='Help')
+
+@app.route("/sign-up")
+def signUp():
+    return render_template('index.html', title='Sign Up', body=render_template('signUp.html'))
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
